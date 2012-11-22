@@ -75,7 +75,7 @@ public class MainFrame extends javax.swing.JFrame {
             }
         ));
         jTable1.setColumnSelectionAllowed(true);
-        jTable1.setRowHeight(71);
+        jTable1.setRowHeight(134);
         jScrollPane1.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -166,7 +166,9 @@ public class MainFrame extends javax.swing.JFrame {
         CalendarViewPanel.setLayout(CalendarViewPanelLayout);
         CalendarViewPanelLayout.setHorizontalGroup(
             CalendarViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1045, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalendarViewPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         CalendarViewPanelLayout.setVerticalGroup(
             CalendarViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
