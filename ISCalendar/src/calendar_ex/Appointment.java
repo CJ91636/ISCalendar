@@ -21,14 +21,31 @@ public class Appointment {
         public boolean allDay;
 	
         public Appointment(CalendarDate sDate, CalendarDate eDate, CalendarTime sTime, CalendarTime eTime,
-                String name, boolean allD, Recurrence r){
+                String name, boolean allD, int r, String loc){
             startDate = sDate;
             endDate = eDate;
             start_time = sTime;
             end_time = eTime;
             description = name;
             allDay = allD;
-            recur = r;
+            switch(r){
+                case 0: 
+                    recur = Recurrence.NONE;
+                    break;
+                case 1:
+                    recur = Recurrence.DAILY;
+                    break;
+                case 2:
+                    recur = Recurrence.WEEKLY;
+                    break;
+                case 3:
+                    recur = Recurrence.TWO_WEEKLY;
+                    break;
+                case 4:
+                    recur = Recurrence.FOUR_WEEKLY;
+                    break;
+            }
+            location = loc;
         }
 	
 	public Appointment(CalendarDate the_date, CalendarTime s_time, CalendarTime e_time, String desc){

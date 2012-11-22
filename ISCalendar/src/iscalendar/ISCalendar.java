@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package iscalendar;
+import calendar_ex.*;
 
 /**
  *
@@ -14,6 +15,7 @@ public class ISCalendar {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        CalendarEx thisCalendar = new CalendarEx();
         // TODO code application logic here
     }
 }

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
@@ -69,33 +73,32 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="checkAllDay" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="checkRecurring" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="checkAllDay" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="checkRecurring" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="buttonConfirm" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Component id="buttonConfirm" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelLocation" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                  <Component id="LocationInputBox" min="-2" pref="108" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="buttonCancel" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="checkTwoWeeks" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="checkDaily" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="checkWeekly" min="-2" max="-2" attributes="0"/>
-                                      <Component id="checkFourWeeks" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="buttonCancel" min="-2" max="-2" attributes="0"/>
+                              <Component id="recurringChoice" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="63" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -116,26 +119,16 @@
                       <Component id="endLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="endDateDay" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="checkRecurring" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="checkAllDay" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="checkDaily" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="checkWeekly" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="checkFourWeeks" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="checkTwoWeeks" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="checkRecurring" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="checkAllDay" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="recurringChoice" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelLocation" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="LocationInputBox" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -206,26 +199,6 @@
             <Property name="text" type="java.lang.String" value="Recurring"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JCheckBox" name="checkTwoWeeks">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Two-Weeks"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="checkDaily">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Daily"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="checkWeekly">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Weekly"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="checkFourWeeks">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Four-Weeks"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="buttonConfirm">
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirm"/>
@@ -241,6 +214,25 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelLocation">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Location:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="LocationInputBox">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="recurringChoice">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="4">
+                <StringItem index="0" value="Daily"/>
+                <StringItem index="1" value="Weekly"/>
+                <StringItem index="2" value="Two Weeks"/>
+                <StringItem index="3" value="Four Weeks"/>
+              </StringArray>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
