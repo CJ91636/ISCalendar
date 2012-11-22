@@ -16,6 +16,8 @@ public class ISCalendar {
      */
     public static void main(String[] args) {
         CalendarEx thisCalendar = new CalendarEx();
+        MainFrame MF = new MainFrame();
+        MF.main(args, thisCalendar);
         // TODO code application logic here
     }
 }

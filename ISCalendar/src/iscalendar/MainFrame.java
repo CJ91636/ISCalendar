@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package iscalendar;
+import calendar_ex.*;
 
 /**
  *
@@ -36,6 +37,8 @@ public class MainFrame extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
+        addEventButton = new javax.swing.JButton();
+        eventText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,12 +165,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Day View", jScrollPane3);
 
+        addEventButton.setText("Add Event");
+        addEventButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEventButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout CalendarViewPanelLayout = new javax.swing.GroupLayout(CalendarViewPanel);
         CalendarViewPanel.setLayout(CalendarViewPanelLayout);
         CalendarViewPanelLayout.setHorizontalGroup(
             CalendarViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalendarViewPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(CalendarViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(addEventButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(eventText))
+                .addGap(36, 36, 36)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         CalendarViewPanelLayout.setVerticalGroup(
@@ -176,6 +190,12 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(42, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(CalendarViewPanelLayout.createSequentialGroup()
+                .addGap(214, 214, 214)
+                .addComponent(eventText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addEventButton)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -203,10 +223,16 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEventButtonActionPerformed
+
+    }//GEN-LAST:event_addEventButtonActionPerformed
+    static AddFullEvent FE;
+    static CalendarEx cx;
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[], CalendarEx c) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -229,8 +255,9 @@ public class MainFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        cx = c;
         /* Create and display the form */
+        FE = new AddFullEvent();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainFrame().setVisible(true);
@@ -241,6 +268,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel CalendarPanel;
     private javax.swing.JPanel CalendarViewPanel;
     private javax.swing.JPanel ToolPanel;
+    private javax.swing.JButton addEventButton;
+    private javax.swing.JTextField eventText;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

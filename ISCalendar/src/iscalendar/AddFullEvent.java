@@ -242,7 +242,8 @@ public class AddFullEvent extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     static String NameInput;
-    public static void main(String args[]) {
+    static CalendarEx Calendar;
+    public static void main(String args[],CalendarEx c) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -266,6 +267,7 @@ public class AddFullEvent extends javax.swing.JFrame {
         }
         //</editor-fold>
         NameInput = args[0];
+        Calendar = c;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
