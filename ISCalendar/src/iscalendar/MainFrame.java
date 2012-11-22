@@ -39,6 +39,9 @@ public class MainFrame extends javax.swing.JFrame {
         jTable3 = new javax.swing.JTable();
         addEventButton = new javax.swing.JButton();
         eventText = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,6 +175,12 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("<<");
+
+        jButton2.setText(">>");
+
+        jLabel1.setText("currentLabel");
+
         javax.swing.GroupLayout CalendarViewPanelLayout = new javax.swing.GroupLayout(CalendarViewPanel);
         CalendarViewPanel.setLayout(CalendarViewPanelLayout);
         CalendarViewPanelLayout.setHorizontalGroup(
@@ -183,11 +192,24 @@ public class MainFrame extends javax.swing.JFrame {
                     .addComponent(eventText))
                 .addGap(36, 36, 36)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 901, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalendarViewPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jButton2)
+                .addGap(21, 21, 21))
         );
         CalendarViewPanelLayout.setVerticalGroup(
             CalendarViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalendarViewPanelLayout.createSequentialGroup()
-                .addContainerGap(42, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(CalendarViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 876, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(CalendarViewPanelLayout.createSequentialGroup()
@@ -270,6 +292,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel ToolPanel;
     private javax.swing.JButton addEventButton;
     private javax.swing.JTextField eventText;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
