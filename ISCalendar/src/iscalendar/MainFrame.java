@@ -28,10 +28,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         ToolPanel = new javax.swing.JPanel();
         CalendarPanel = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable3 = new javax.swing.JTable();
         CalendarViewPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(1280, 1024));
 
         javax.swing.GroupLayout ToolPanelLayout = new javax.swing.GroupLayout(ToolPanel);
         ToolPanel.setLayout(ToolPanelLayout);
@@ -41,18 +48,121 @@ public class MainFrame extends javax.swing.JFrame {
         );
         ToolPanelLayout.setVerticalGroup(
             ToolPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1024, Short.MAX_VALUE)
         );
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"", "", "", "", "", "", ""},
+                {null, null, null, null, null, null, ""},
+                {"", null, null, null, null, null, ""},
+                {"", null, null, null, null, null, ""},
+                {"", null, null, null, null, null, ""},
+                {"", "", "", "", "", "", ""}
+            },
+            new String [] {
+                "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+            }
+        ));
+        jTable1.setColumnSelectionAllowed(true);
+        jTable1.setRowHeight(71);
+        jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        jTabbedPane1.addTab("Month View", jScrollPane1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"00:00", null, null, null, null, null, null, null},
+                {"01:00", null, null, null, null, null, null, null},
+                {"02:00", null, null, null, null, null, null, null},
+                {"03:00", null, null, null, null, null, null, null},
+                {"04:00", null, null, null, null, null, null, null},
+                {"05:00", null, null, null, null, null, null, null},
+                {"06:00", null, null, null, null, null, null, null},
+                {"07:00", null, null, null, null, null, null, null},
+                {"08:00", null, null, null, null, null, null, null},
+                {"09:00", null, null, null, null, null, null, null},
+                {"10:00", null, null, null, null, null, null, null},
+                {"11:00", null, null, null, null, null, null, null},
+                {"12:00", null, null, null, null, null, null, null},
+                {"13:00", null, null, null, null, null, null, null},
+                {"14:00", null, null, null, null, null, null, null},
+                {"15:00", null, null, null, null, null, null, null},
+                {"16:00", null, null, null, null, null, null, null},
+                {"17:00", null, null, null, null, null, null, null},
+                {"18:00", null, null, null, null, null, null, null},
+                {"19:00", null, null, null, null, null, null, null},
+                {"20:00", null, null, null, null, null, null, null},
+                {"21:00", null, null, null, null, null, null, null},
+                {"22:00", null, null, null, null, null, null, null},
+                {"23:00", null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable2.setRowHeight(55);
+        jScrollPane2.setViewportView(jTable2);
+
+        jTabbedPane1.addTab("Week View", jScrollPane2);
+
+        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"00:00", ""},
+                {"01:00", null},
+                {"02:00", null},
+                {"03:00", null},
+                {"04:00", null},
+                {"05:00", null},
+                {"06:00", null},
+                {"07:00", null},
+                {"08:00", null},
+                {"09:00", null},
+                {"10:00", null},
+                {"11:00", null},
+                {"12:00", null},
+                {"13:00", null},
+                {"14:00", null},
+                {"15:00", null},
+                {"16:00", null},
+                {"17:00", null},
+                {"18:00", null},
+                {"19:00", null},
+                {"20:00", null},
+                {"21:00", null},
+                {"22:00", null},
+                {"23:00", null}
+            },
+            new String [] {
+                "Time", "*Date*"
+            }
+        ));
+        jTable3.setRowHeight(55);
+        jScrollPane3.setViewportView(jTable3);
+        jTable3.getColumnModel().getColumn(0).setMaxWidth(300);
+
+        jTabbedPane1.addTab("Day View", jScrollPane3);
 
         javax.swing.GroupLayout CalendarPanelLayout = new javax.swing.GroupLayout(CalendarPanel);
         CalendarPanel.setLayout(CalendarPanelLayout);
         CalendarPanelLayout.setHorizontalGroup(
             CalendarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 453, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1033, Short.MAX_VALUE)
         );
         CalendarPanelLayout.setVerticalGroup(
             CalendarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalendarPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 923, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout CalendarViewPanelLayout = new javax.swing.GroupLayout(CalendarViewPanel);
@@ -72,19 +182,20 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(ToolPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addGap(18, 18, 18)
                         .addComponent(CalendarPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(CalendarViewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CalendarViewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(ToolPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(CalendarViewPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(CalendarPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -129,5 +240,12 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel CalendarPanel;
     private javax.swing.JPanel CalendarViewPanel;
     private javax.swing.JPanel ToolPanel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTable3;
     // End of variables declaration//GEN-END:variables
 }
