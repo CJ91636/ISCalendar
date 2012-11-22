@@ -3,13 +3,14 @@
  * and open the template in the editor.
  */
 package iscalendar;
+import java.util.Date;
+import calendar_ex.Appointment;
 
 /**
  *
  * @author 1002253w
  */
 public class AddFullEvent extends javax.swing.JFrame {
-
     /**
      * Creates new form AddFullEvent
      */
@@ -33,7 +34,7 @@ public class AddFullEvent extends javax.swing.JFrame {
         startLabel = new javax.swing.JLabel();
         endLabel = new javax.swing.JLabel();
         startDateDay = new javax.swing.JSpinner();
-        jSpinner1 = new javax.swing.JSpinner();
+        endDateDay = new javax.swing.JSpinner();
         checkAllDay = new javax.swing.JCheckBox();
         checkRecurring = new javax.swing.JCheckBox();
         checkTwoWeeks = new javax.swing.JCheckBox();
@@ -45,6 +46,7 @@ public class AddFullEvent extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        NameInputBox.setText(NameInput);
         NameInputBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NameInputBoxActionPerformed(evt);
@@ -62,7 +64,7 @@ public class AddFullEvent extends javax.swing.JFrame {
 
         startDateDay.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1317423600000L), new java.util.Date(1317423600000L), new java.util.Date(1349045940000L), java.util.Calendar.MINUTE));
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1317423600000L), new java.util.Date(1317423600000L), new java.util.Date(1349045940000L), java.util.Calendar.MINUTE));
+        endDateDay.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1317423600000L), new java.util.Date(1317423600000L), new java.util.Date(1349045940000L), java.util.Calendar.MINUTE));
 
         checkAllDay.setText("All Day");
         checkAllDay.addActionListener(new java.awt.event.ActionListener() {
@@ -89,6 +91,11 @@ public class AddFullEvent extends javax.swing.JFrame {
         });
 
         buttonCancel.setText("Cancel");
+        buttonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,7 +116,7 @@ public class AddFullEvent extends javax.swing.JFrame {
                             .addGap(1, 1, 1)
                             .addComponent(endLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(endDateDay, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(75, 75, 75)
                             .addComponent(TitleLabel)))
@@ -148,7 +155,7 @@ public class AddFullEvent extends javax.swing.JFrame {
                     .addComponent(startDateDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(startLabel)
                     .addComponent(endLabel)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(endDateDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -201,15 +208,33 @@ public class AddFullEvent extends javax.swing.JFrame {
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
         boolean isRecurring = checkRecurring.isSelected();
+        if(isRecurring){
+            boolean isDaily = checkDaily.isSelected();
+            boolean isWeekly = checkWeekly.isSelected();
+            boolean isTwoWeekly = checkTwoWeeks.isSelected();
+            boolean isFourWeekly = checkFourWeeks.isSelected();
+        }
         boolean isAllDay = checkAllDay.isSelected();
         Date startDate = (Date) startDateDay.getValue();
+        Date endDate = (Date) endDateDay.getValue();
+        String name = NameInputBox.getText();
+        
+        Appointment ap;
+        
+        
        
         
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
+    private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
+        NameInput = null;
+        this.setVisible(false);
+    }//GEN-LAST:event_buttonCancelActionPerformed
+
     /**
      * @param args the command line arguments
      */
+    static String NameInput;
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -233,11 +258,12 @@ public class AddFullEvent extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AddFullEvent.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        NameInput = args[0];
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AddFullEvent().setVisible(true);
+                
             }
         });
     }
@@ -253,9 +279,9 @@ public class AddFullEvent extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkRecurring;
     private javax.swing.JCheckBox checkTwoWeeks;
     private javax.swing.JCheckBox checkWeekly;
+    private javax.swing.JSpinner endDateDay;
     private javax.swing.JLabel endLabel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner startDateDay;
     private javax.swing.JLabel startLabel;
     // End of variables declaration//GEN-END:variables

@@ -7,7 +7,8 @@ public class Appointment {
 
 	private long ap_id; // unique id for the appointment
 	
-	public CalendarDate date;	//  date the appointment occurs - note ONLY ONE DATE
+	public CalendarDate startDate;	//  date the appointment occurs - note ONLY ONE DATE
+        public CalendarDate endDate;
 	public CalendarTime start_time, end_time; // start time and end time for the appointment
 	
 	public enum Recurrence{NONE, DAILY, WEEKLY, TWO_WEEKLY, FOUR_WEEKLY};
@@ -17,12 +18,23 @@ public class Appointment {
 	public String category;    // Type of appointment (eg, work, social, uni etc)
 	public Recurrence recur;   // How often it recurs... see enum Recurrence
 	public int reminder;		// Reminder n minutes before.
+        public boolean allDay;
 	
+        public Appointment(CalendarDate sDate, CalendarDate eDate, CalendarTime sTime, CalendarTime eTime,
+                String name, boolean allD, Recurrence r){
+            startDate = sDate;
+            endDate = eDate;
+            start_time = sTime;
+            end_time = eTime;
+            description = name;
+            allDay = allD;
+            recur = r;
+        }
 	
 	public Appointment(CalendarDate the_date, CalendarTime s_time, CalendarTime e_time, String desc){
 		ap_id = 0;
 		
-		date = the_date;
+		startDate = the_date;
 		start_time = s_time;
 		
 		end_time = e_time;
@@ -38,7 +50,7 @@ public class Appointment {
 	public Appointment(CalendarDate the_date, CalendarTime s_time, CalendarTime e_time, String desc, String loc){
 		ap_id = 0;
 
-		date = the_date;
+		startDate = the_date;
 		start_time = s_time;
 		
 		end_time = e_time;
@@ -54,7 +66,7 @@ public class Appointment {
 	public Appointment(CalendarDate the_date, CalendarTime s_time, CalendarTime e_time, String desc, String loc, String cat){
 		ap_id = 0;
 
-		date = the_date;
+		startDate = the_date;
 		start_time = s_time;
 		
 		end_time = e_time;
@@ -69,7 +81,7 @@ public class Appointment {
 	public Appointment(CalendarDate the_date, CalendarTime s_time, CalendarTime e_time, String desc, String loc, String cat, Recurrence rec, int rem){
 		ap_id = 0;
 
-		date = the_date;
+		startDate = the_date;
 		start_time = s_time;
 		
 		end_time = e_time;
@@ -127,7 +139,7 @@ public class Appointment {
 		System.out.println(description);
 		System.out.println(location);		
 		System.out.println(category);
-		System.out.println("Date: " + date.toString());
+		System.out.println("Date: " + startDate.toString());
 		System.out.println("Starts: " + start_time.toString());
 		System.out.println("Ends: " + end_time.toString());
 		System.out.println("Recurring: " + recur);		
@@ -137,7 +149,7 @@ public class Appointment {
 	
 	public String toString() {
 		// print appointment to the console
-		return(description+", "+location+", "+", "+category+", "+date.toString()+
+		return(description+", "+location+", "+", "+category+", "+startDate.toString()+
 			". Starts: "+start_time.toString()+". Ends: " + end_time.toString() + 
 			", Recurring: " + recur + ", Reminder: " + reminder);
 		
@@ -148,7 +160,7 @@ public class Appointment {
 		// that this appointment recurs. 
 		
 		List<CalendarDate> ids = new ArrayList<CalendarDate>();
-		int id = CalendarDate.getDateID(date);
+		int id = CalendarDate.getDateID(startDate);
 		
 		// how many days between recurrences
 		int gap = 0;
@@ -189,7 +201,7 @@ public class Appointment {
 		// given a start date and and end date, returns a list of dates
 		// that this appointment recurs. 
 		
-		CalendarDate.getDateID(date);
+		CalendarDate.getDateID(startDate);
 		
 		return getRecurrenceDates(CalendarDate.getDateID(startDate), CalendarDate.getDateID(endDate));
 	}

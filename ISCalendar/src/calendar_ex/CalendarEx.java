@@ -128,7 +128,7 @@ public class CalendarEx {
 				 
 				 p.println("<");				 
 				 p.println(ap.getID());
-				 p.println(CalendarDate.getDateID(ap.date));
+				 p.println(CalendarDate.getDateID(ap.startDate));
 				 p.println(ap.start_time.hr);
 				 p.println(ap.start_time.min);
 

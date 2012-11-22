@@ -61,7 +61,7 @@
                               <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Component id="endLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="jSpinner1" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="endDateDay" min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
@@ -114,7 +114,7 @@
                       <Component id="startDateDay" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="startLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="endLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="endDateDay" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -152,6 +152,9 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NameInputBoxActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="NameInputBox.setText(NameInput);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="NameLabel">
           <Properties>
@@ -183,7 +186,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="jSpinner1">
+        <Component class="javax.swing.JSpinner" name="endDateDay">
           <Properties>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel initial="1317423600000" maximum="1349045940000" minimum="1317423600000" stepSize="12" type="date"/>
@@ -235,6 +238,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonCancelActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
