@@ -4,10 +4,12 @@
  */
 package iscalendar;
 import calendar_ex.*;
+import javax.swing.JTable;
 
 /**
  *
  * @author 1003646s
+ * @co-author 1003019j
  */
 public class MainFrame extends javax.swing.JFrame {
 
@@ -178,6 +180,11 @@ public class MainFrame extends javax.swing.JFrame {
         LeftButton.setText("<<");
 
         RightButton.setText(">>");
+        RightButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RightButtonActionPerformed(evt);
+            }
+        });
 
         currentLabel.setText("currentLabel");
 
@@ -247,8 +254,26 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEventButtonActionPerformed
-
+        AddFullEvent afe = new AddFullEvent();
+        afe.setNameInputBox(eventText.getText());
+        afe.setVisible(true);
+        
+        
     }//GEN-LAST:event_addEventButtonActionPerformed
+int j =0;
+    private void RightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RightButtonActionPerformed
+        j++;
+        int k=0;
+        for (int i=0;i<6;i++) {
+    for (int j=0;j<7;j++) {
+        k++;
+        if (k>j){
+        
+        getMonthTab().getModel().setValueAt(k, i, j);
+        }
+    }
+        }
+    }//GEN-LAST:event_RightButtonActionPerformed
     static AddFullEvent FE;
     static CalendarEx cx;
     
@@ -286,6 +311,9 @@ public class MainFrame extends javax.swing.JFrame {
                 new MainFrame().setVisible(true);
             }
         });
+  
+  
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CalendarPanel;
@@ -304,4 +332,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     // End of variables declaration//GEN-END:variables
+
+    JTable getMonthTab() {
+        return MonthTab;
+    }
+    
+  
 }

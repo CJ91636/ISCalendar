@@ -4,10 +4,13 @@
  */
 package iscalendar;
 import calendar_ex.*;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
  * @author 1002253w
+ * @helper 1003019j
  */
 public class ISCalendar {
 
@@ -19,5 +22,12 @@ public class ISCalendar {
         MainFrame MF = new MainFrame();
         MF.main(args, thisCalendar);
         // TODO code application logic here
+     
+          for (int i=0;i<5;i++) {
+    for (int j=0;j<5;j++) {
+        MF.getMonthTab().getModel().setValueAt("e", i, j);
+        
+    }
+        } 
     }
 }

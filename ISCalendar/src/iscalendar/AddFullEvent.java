@@ -294,4 +294,8 @@ public class AddFullEvent extends javax.swing.JFrame {
     private javax.swing.JSpinner startDateDay;
     private javax.swing.JLabel startLabel;
     // End of variables declaration//GEN-END:variables
+
+    void setNameInputBox(String name) {
+        NameInputBox.setText(name);
+    }
 }
