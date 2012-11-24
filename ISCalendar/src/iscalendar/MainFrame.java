@@ -207,8 +207,8 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CalendarViewPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(LeftButton)
-                .addGap(18, 18, 18)
-                .addComponent(currentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(currentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(RightButton)
                 .addGap(21, 21, 21))
@@ -242,6 +242,17 @@ public class MainFrame extends javax.swing.JFrame {
 
                 k++;
             }
+        }
+        if (WeekTab.hasFocus()){
+            f=0;
+            String val = ""+MonthTab.getModel().getValueAt(f, 0);
+            val = ""+MonthTab.getModel().getValueAt(f, 0);
+            if(val.equals("")){
+                f++;
+                val = ""+MonthTab.getModel().getValueAt(f, 0);
+            }
+            String start = val+"/"+(((j+9)%12)+1);
+            currentLabel.setText("Week commencing " + start);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -277,185 +288,110 @@ public class MainFrame extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_addEventButtonActionPerformed
-int j =0;
+int j =0; //is month tracker
+int l = 0; // is week tracker 
+int f = 0; //is week no in month
     private void RightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RightButtonActionPerformed
-       if (MonthTab.isShowing()){
-        j++;
-        int k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    
-                        getMonthTab().getModel().setValueAt("", i, j);
-                        
-                    
-                    k++;    
-                    }
-             }
-        if (j%12 == 3){
-            currentLabel.setText("January");
-            k=0;
-            for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    
-                            //while (k <= 31){
-                              //  k++;
-                            //CalendarDate cd = new CalendarDate(k);
-                            //getMonthTab().getModel().setValueAt(cd.day, i, j);
+       
         
-                            //}
-                    if (k>=6 && k< 37){
-                        getMonthTab().getModel().setValueAt(k-5, i, j);
-                    }    
-                    
-                    k++;    
-                    }
+        if (MonthTab.isShowing()){
+        j++;
+        changeMonth(j);
+       
+       }else if (WeekTab.isShowing()){
+           //note this only works for OUR specified time period.
+           //This WILL NOT WORK should you get a monday on the first of the month.
+           //I think to do this youd need to just double check if val is ""
+           //and do f++ at the end of the method 
+           l++;
+           f++;
+           String val = ""+MonthTab.getModel().getValueAt(f, 0);
+           
+            String start = val+"of"+currentLabel.getText();
+             if ((l)==1){
+                     start="26/9";
+                     f=0;
+                 } else{
+             if (f==5){
+                 // String val = ""+MonthTab.getModel().getValueAt(f, 0);
+                 val = ""+MonthTab.getModel().getValueAt(f, 0);
+                 if(val.equals("")){
+                 f=1;
+                 j++; 
+                 changeMonth(j); 
+                 //MonthTab.setVisible(true);
+                 val = ""+MonthTab.getModel().getValueAt(f, 0);
+             }
+             
+             }
+             
+             
+            start = val+"/"+(((j+9)%12)+1);}
+            if (f==5){
+                   f=0;
+                 j++; 
+                 changeMonth(j); 
             }
-        }else if(j%12 == 4){
-             currentLabel.setText("February");
-             k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    if (k>=2 && k< 31){
-                        getMonthTab().getModel().setValueAt(k-1, i, j);
-                    }    
-                    
-                    k++;    
-                    }
-             }
-         }else if(j%12 == 5){
-             currentLabel.setText("March");
-              k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    if (k>=3 && k< 34){
-                        getMonthTab().getModel().setValueAt(k-2, i, j);
-                    }    
-                    
-                    k++;    
-                    }
-             }
-         }else if(j%12 == 6){
-             currentLabel.setText("April");
-             k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    if (k>=6 && k< 36){
-                        getMonthTab().getModel().setValueAt(k-5, i, j);
-                    }    
-                    
-                    k++;    
-                    }
-             }
-         }else if(j%12 == 7){
-             currentLabel.setText("May");
-             k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    if (k>=1 && k< 32){
-                        getMonthTab().getModel().setValueAt(k, i, j);
-                    }    
-                    
-                    k++;    
-                    }
-             }
-         }else if(j%12 == 8){
-             currentLabel.setText("June");
-             k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    if (k>=4 && k< 34){
-                        getMonthTab().getModel().setValueAt(k-3, i, j);
-                    }    
-                    
-                    k++;    
-                    }
-             }
-         }else if(j%12 == 9){
-             currentLabel.setText("July");
-             k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    if (k>=6 && k< 37){
-                        getMonthTab().getModel().setValueAt(k-5, i, j);
-                    }    
-                    
-                    k++;    
-                    }
-             }
-         }else if(j%12 == 10){
-             currentLabel.setText("August");
-             k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    if (k>=2 && k< 33){
-                        getMonthTab().getModel().setValueAt(k-1, i, j);
-                    }    
-                    
-                    k++;    
-                    }
-             }
-         }else if(j%12 == 11){
-             currentLabel.setText("September");
-             k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    if (k>=5 && k< 35){
-                        getMonthTab().getModel().setValueAt(k-4, i, j);
-                    }    
-                    
-                    k++;    
-                    }
-             }
-         }else if(j%12 == 0){
-             currentLabel.setText("October");
-             k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    if (k>=5 && k< 36){
-                        getMonthTab().getModel().setValueAt(k-4, i, j);
-                    }    
-                    
-                    k++;    
-                    }
-             }
-         }else if(j%12 == 1){
-             currentLabel.setText("November");
-             k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    if (k>=1 && k< 32){
-                        getMonthTab().getModel().setValueAt(k, i, j);
-                    }    
-                    
-                    k++;    
-                    }
-             }
-         }else if(j%12 == 2){
-             currentLabel.setText("December");
-             k=0;
-             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
-                    if (k>=3 && k< 34){
-                        getMonthTab().getModel().setValueAt(k-2, i, j);
-                    }    
-                    
-                    k++;    
-                    }
-             }
-         }
+             currentLabel.setText("Week commencing " + start);
+              
        }
-        //String date = (cd.month).toString();
-      
+           
+ 
+       
     }//GEN-LAST:event_RightButtonActionPerformed
 
     private void LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeftButtonActionPerformed
       if (MonthTab.isShowing()){ 
       j--;
+      changeMonth(j);
+      }else if (WeekTab.isShowing()){
+           l--;
+           f--;
+           String val = ""+MonthTab.getModel().getValueAt(f, 0);
+           
+            String start = val+"of"+currentLabel.getText();
+             if ((l)==0){
+                     start="26/9";
+                     f=0;
+                     l=1;
+                 } else{
+             
+                 while(val.equals("")){
+                 
+                 //
+                 if(f==0){
+                     f=5;
+                    j--; 
+                    changeMonth(j); 
+                    //MonthTab.setVisible(true);
+                    val = ""+MonthTab.getModel().getValueAt(f, 0);
+                } else {
+                     f--;
+                     val = ""+MonthTab.getModel().getValueAt(f, 0);
+                 }
+             
+             }
+             
+            
+      
+             
+            start = val+"/"+(((j+9)%12)+1);
+            if (f==0){
+                   f=5;
+                 j--; 
+                 changeMonth(j); 
+            } }
+             currentLabel.setText("Week commencing " + start);
+              
+              
+       }
+    }//GEN-LAST:event_LeftButtonActionPerformed
+    private void changeMonth(int j){
         int k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     
-                        getMonthTab().getModel().setValueAt("", i, j);
+                        getMonthTab().getModel().setValueAt("", i, b);
                         
                     
                     k++;    
@@ -463,9 +399,10 @@ int j =0;
              }
         if (j%12 == 3){
             currentLabel.setText("January");
+            l=18;
             k=0;
             for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     
                             //while (k <= 31){
                               //  k++;
@@ -474,7 +411,7 @@ int j =0;
         
                             //}
                     if (k>=6 && k< 37){
-                        getMonthTab().getModel().setValueAt(k-5, i, j);
+                        getMonthTab().getModel().setValueAt(k-5, i, b);
                     }    
                     
                     k++;    
@@ -482,11 +419,12 @@ int j =0;
             }
         }else if(j%12 == 4){
              currentLabel.setText("February");
+             l=22;
              k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     if (k>=2 && k< 31){
-                        getMonthTab().getModel().setValueAt(k-1, i, j);
+                        getMonthTab().getModel().setValueAt(k-1, i, b);
                     }    
                     
                     k++;    
@@ -494,11 +432,12 @@ int j =0;
              }
          }else if(j%12 == 5){
              currentLabel.setText("March");
+             l=26;
               k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     if (k>=3 && k< 34){
-                        getMonthTab().getModel().setValueAt(k-2, i, j);
+                        getMonthTab().getModel().setValueAt(k-2, i, b);
                     }    
                     
                     k++;    
@@ -506,11 +445,12 @@ int j =0;
              }
          }else if(j%12 == 6){
              currentLabel.setText("April");
+             l=31;
              k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     if (k>=6 && k< 36){
-                        getMonthTab().getModel().setValueAt(k-5, i, j);
+                        getMonthTab().getModel().setValueAt(k-5, i, b);
                     }    
                     
                     k++;    
@@ -518,11 +458,12 @@ int j =0;
              }
          }else if(j%12 == 7){
              currentLabel.setText("May");
+             l=35;
              k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     if (k>=1 && k< 32){
-                        getMonthTab().getModel().setValueAt(k, i, j);
+                        getMonthTab().getModel().setValueAt(k, i, b);
                     }    
                     
                     k++;    
@@ -530,11 +471,12 @@ int j =0;
              }
          }else if(j%12 == 8){
              currentLabel.setText("June");
+             l=39;
              k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     if (k>=4 && k< 34){
-                        getMonthTab().getModel().setValueAt(k-3, i, j);
+                        getMonthTab().getModel().setValueAt(k-3, i, b);
                     }    
                     
                     k++;    
@@ -542,11 +484,12 @@ int j =0;
              }
          }else if(j%12 == 9){
              currentLabel.setText("July");
+             l=44;
              k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     if (k>=6 && k< 37){
-                        getMonthTab().getModel().setValueAt(k-5, i, j);
+                        getMonthTab().getModel().setValueAt(k-5, i, b);
                     }    
                     
                     k++;    
@@ -554,11 +497,12 @@ int j =0;
              }
          }else if(j%12 == 10){
              currentLabel.setText("August");
+             l=48;
              k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     if (k>=2 && k< 33){
-                        getMonthTab().getModel().setValueAt(k-1, i, j);
+                        getMonthTab().getModel().setValueAt(k-1, i, b);
                     }    
                     
                     k++;    
@@ -566,11 +510,12 @@ int j =0;
              }
          }else if(j%12 == 11){
              currentLabel.setText("September");
+             l=52;
              k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     if (k>=5 && k< 35){
-                        getMonthTab().getModel().setValueAt(k-4, i, j);
+                        getMonthTab().getModel().setValueAt(k-4, i, b);
                     }    
                     
                     k++;    
@@ -578,11 +523,12 @@ int j =0;
              }
          }else if(j%12 == 0){
              currentLabel.setText("October");
+             l=5;
              k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     if (k>=5 && k< 36){
-                        getMonthTab().getModel().setValueAt(k-4, i, j);
+                        getMonthTab().getModel().setValueAt(k-4, i, b);
                     }    
                     
                     k++;    
@@ -590,11 +536,12 @@ int j =0;
              }
          }else if(j%12 == 1){
              currentLabel.setText("November");
+             l=9;
              k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     if (k>=1 && k< 32){
-                        getMonthTab().getModel().setValueAt(k, i, j);
+                        getMonthTab().getModel().setValueAt(k, i, b);
                     }    
                     
                     k++;    
@@ -602,22 +549,19 @@ int j =0;
              }
          }else if(j%12 == 2){
              currentLabel.setText("December");
+             l=13;
              k=0;
              for (int i=0;i<6;i++) {
-                for (int j=0;j<7;j++) {
+                for (int b=0;b<7;b++) {
                     if (k>=3 && k< 34){
-                        getMonthTab().getModel().setValueAt(k-2, i, j);
+                        getMonthTab().getModel().setValueAt(k-2, i, b);
                     }    
                     
                     k++;    
                     }
              }
          }
-        //String date = (cd.month).toString();
-      
-                  
-      }
-    }//GEN-LAST:event_LeftButtonActionPerformed
+    }
     static AddFullEvent FE;
     static CalendarEx cx;
     static CalendarDate cd;

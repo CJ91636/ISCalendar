@@ -95,8 +95,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="LeftButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="currentLabel" min="-2" pref="95" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="currentLabel" min="-2" pref="199" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="RightButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -129,7 +129,7 @@
       <SubComponents>
         <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="currentLabel.setText(&quot;October&quot;);&#xa;             int k=0;&#xa;             for (int i=0;i&lt;6;i++) {&#xa;                for (int j=0;j&lt;7;j++) {&#xa;                    if (k&gt;=5 &amp;&amp; k&lt; 36){&#xa;                        getMonthTab().getModel().setValueAt(k-4, i, j);&#xa;                    }    &#xa;                    &#xa;                    k++;    &#xa;                    }&#xa;             }"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="currentLabel.setText(&quot;October&quot;);&#xa;             int k=0;&#xa;             for (int i=0;i&lt;6;i++) {&#xa;                for (int j=0;j&lt;7;j++) {&#xa;                    if (k&gt;=5 &amp;&amp; k&lt; 36){&#xa;                        getMonthTab().getModel().setValueAt(k-4, i, j);&#xa;                    }    &#xa;                    &#xa;                    k++;    &#xa;                    }&#xa;             }&#xa;if (WeekTab.hasFocus()){&#xa;f=0; &#xa;String val = &quot;&quot;+MonthTab.getModel().getValueAt(f, 0);&#xa;                 val = &quot;&quot;+MonthTab.getModel().getValueAt(f, 0);&#xa;                 if(val.equals(&quot;&quot;)){&#xa;                f++;&#xa;                 val = &quot;&quot;+MonthTab.getModel().getValueAt(f, 0);&#xa;             }&#xa;String start = val+&quot;/&quot;+(((j+9)%12)+1);&#xa; currentLabel.setText(&quot;Week commencing &quot; + start);&#xa;}"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
