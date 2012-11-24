@@ -18,16 +18,20 @@ public class ISCalendar {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        
         CalendarEx thisCalendar = new CalendarEx();
         MainFrame MF = new MainFrame();
-        MF.main(args, thisCalendar);
-        // TODO code application logic here
-     
-          for (int i=0;i<5;i++) {
+              for (int i=0;i<5;i++) {
     for (int j=0;j<5;j++) {
         MF.getMonthTab().getModel().setValueAt("e", i, j);
         
     }
         } 
+        
+        MF.main(args, thisCalendar);
+        // TODO code application logic here
+     
+    
     }
 }

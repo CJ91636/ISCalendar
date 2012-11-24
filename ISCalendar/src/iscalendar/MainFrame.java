@@ -178,6 +178,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         LeftButton.setText("<<");
+        LeftButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LeftButtonActionPerformed(evt);
+            }
+        });
 
         RightButton.setText(">>");
         RightButton.addActionListener(new java.awt.event.ActionListener() {
@@ -264,18 +269,344 @@ int j =0;
     private void RightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RightButtonActionPerformed
         j++;
         int k=0;
-        for (int i=0;i<6;i++) {
-    for (int j=0;j<7;j++) {
-        k++;
-        if (k>j){
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    
+                        getMonthTab().getModel().setValueAt("", i, j);
+                        
+                    
+                    k++;    
+                    }
+             }
+        if (j%12 == 3){
+            currentLabel.setText("January");
+            k=0;
+            for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    
+                            //while (k <= 31){
+                              //  k++;
+                            //CalendarDate cd = new CalendarDate(k);
+                            //getMonthTab().getModel().setValueAt(cd.day, i, j);
         
-        getMonthTab().getModel().setValueAt(k, i, j);
-        }
-    }
-        }
+                            //}
+                    if (k>=6 && k< 37){
+                        getMonthTab().getModel().setValueAt(k-5, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+            }
+        }else if(j%12 == 4){
+             currentLabel.setText("February");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=2 && k< 31){
+                        getMonthTab().getModel().setValueAt(k-1, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 5){
+             currentLabel.setText("March");
+              k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=3 && k< 34){
+                        getMonthTab().getModel().setValueAt(k-2, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 6){
+             currentLabel.setText("April");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=6 && k< 36){
+                        getMonthTab().getModel().setValueAt(k-5, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 7){
+             currentLabel.setText("May");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=1 && k< 32){
+                        getMonthTab().getModel().setValueAt(k, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 8){
+             currentLabel.setText("June");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=4 && k< 34){
+                        getMonthTab().getModel().setValueAt(k-3, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 9){
+             currentLabel.setText("July");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=6 && k< 37){
+                        getMonthTab().getModel().setValueAt(k-5, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 10){
+             currentLabel.setText("August");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=2 && k< 33){
+                        getMonthTab().getModel().setValueAt(k-1, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 11){
+             currentLabel.setText("September");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=5 && k< 35){
+                        getMonthTab().getModel().setValueAt(k-4, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 0){
+             currentLabel.setText("October");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=5 && k< 36){
+                        getMonthTab().getModel().setValueAt(k-4, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 1){
+             currentLabel.setText("November");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=1 && k< 32){
+                        getMonthTab().getModel().setValueAt(k, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 2){
+             currentLabel.setText("December");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=3 && k< 34){
+                        getMonthTab().getModel().setValueAt(k-2, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }
+        //String date = (cd.month).toString();
+      
     }//GEN-LAST:event_RightButtonActionPerformed
+
+    private void LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeftButtonActionPerformed
+       
+      j++;
+        int k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    
+                        getMonthTab().getModel().setValueAt("", i, j);
+                        
+                    
+                    k++;    
+                    }
+             }
+        if (j%12 == 3){
+            currentLabel.setText("January");
+            k=0;
+            for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    
+                            //while (k <= 31){
+                              //  k++;
+                            //CalendarDate cd = new CalendarDate(k);
+                            //getMonthTab().getModel().setValueAt(cd.day, i, j);
+        
+                            //}
+                    if (k>=6 && k< 37){
+                        getMonthTab().getModel().setValueAt(k-5, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+            }
+        }else if(j%12 == 4){
+             currentLabel.setText("February");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=2 && k< 31){
+                        getMonthTab().getModel().setValueAt(k-1, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 5){
+             currentLabel.setText("March");
+              k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=3 && k< 34){
+                        getMonthTab().getModel().setValueAt(k-2, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 6){
+             currentLabel.setText("April");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=6 && k< 36){
+                        getMonthTab().getModel().setValueAt(k-5, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 7){
+             currentLabel.setText("May");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=1 && k< 32){
+                        getMonthTab().getModel().setValueAt(k, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 8){
+             currentLabel.setText("June");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=4 && k< 34){
+                        getMonthTab().getModel().setValueAt(k-3, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 9){
+             currentLabel.setText("July");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=6 && k< 37){
+                        getMonthTab().getModel().setValueAt(k-5, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 10){
+             currentLabel.setText("August");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=2 && k< 33){
+                        getMonthTab().getModel().setValueAt(k-1, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 11){
+             currentLabel.setText("September");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=5 && k< 35){
+                        getMonthTab().getModel().setValueAt(k-4, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 0){
+             currentLabel.setText("October");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=5 && k< 36){
+                        getMonthTab().getModel().setValueAt(k-4, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 1){
+             currentLabel.setText("November");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=1 && k< 32){
+                        getMonthTab().getModel().setValueAt(k, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }else if(j%12 == 2){
+             currentLabel.setText("December");
+             k=0;
+             for (int i=0;i<6;i++) {
+                for (int j=0;j<7;j++) {
+                    if (k>=3 && k< 34){
+                        getMonthTab().getModel().setValueAt(k-2, i, j);
+                    }    
+                    
+                    k++;    
+                    }
+             }
+         }
+        //String date = (cd.month).toString();
+      
+                  
+ 
+    }//GEN-LAST:event_LeftButtonActionPerformed
     static AddFullEvent FE;
     static CalendarEx cx;
+    static CalendarDate cd;
     
     /**
      * @param args the command line arguments
@@ -304,6 +635,7 @@ int j =0;
         }
         //</editor-fold>
         cx = c;
+        
         /* Create and display the form */
         FE = new AddFullEvent();
         java.awt.EventQueue.invokeLater(new Runnable() {
