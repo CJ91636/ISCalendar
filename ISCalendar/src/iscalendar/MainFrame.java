@@ -232,6 +232,18 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        currentLabel.setText("October");
+        int k=0;
+        for (int i=0;i<6;i++) {
+            for (int j=0;j<7;j++) {
+                if (k>=5 && k< 36){
+                    getMonthTab().getModel().setValueAt(k-4, i, j);
+                }
+
+                k++;
+            }
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -267,6 +279,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_addEventButtonActionPerformed
 int j =0;
     private void RightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RightButtonActionPerformed
+       if (MonthTab.isShowing()){
         j++;
         int k=0;
              for (int i=0;i<6;i++) {
@@ -430,13 +443,14 @@ int j =0;
                     }
              }
          }
+       }
         //String date = (cd.month).toString();
       
     }//GEN-LAST:event_RightButtonActionPerformed
 
     private void LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeftButtonActionPerformed
-       
-      j++;
+      if (MonthTab.isShowing()){ 
+      j--;
         int k=0;
              for (int i=0;i<6;i++) {
                 for (int j=0;j<7;j++) {
@@ -602,7 +616,7 @@ int j =0;
         //String date = (cd.month).toString();
       
                   
- 
+      }
     }//GEN-LAST:event_LeftButtonActionPerformed
     static AddFullEvent FE;
     static CalendarEx cx;
