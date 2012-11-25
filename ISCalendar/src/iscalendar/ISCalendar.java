@@ -22,12 +22,11 @@ public class ISCalendar {
         
         CalendarEx thisCalendar = new CalendarEx();
         MainFrame MF = new MainFrame();
-              for (int i=0;i<5;i++) {
+              /*for (int i=0;i<5;i++) {
     for (int j=0;j<5;j++) {
-        MF.getMonthTab().getModel().setValueAt("e", i, j);
-        
+        MF.getMonthTab().getModel().setValueAt("HELLOWORLD", i, j);
     }
-        } 
+        } */
         
         MF.main(args, thisCalendar);
         // TODO code application logic here

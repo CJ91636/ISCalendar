@@ -18,6 +18,7 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        //setWeekDisplay();
     }
 
     /**
@@ -68,6 +69,12 @@ public class MainFrame extends javax.swing.JFrame {
             CalendarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 383, Short.MAX_VALUE)
         );
+
+        jTabbedPane1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jTabbedPane1StateChanged(evt);
+            }
+        });
 
         MonthTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -386,6 +393,58 @@ int f = 0; //is week no in month
               
        }
     }//GEN-LAST:event_LeftButtonActionPerformed
+    
+    //listen for a tab change, perform appopriate update to display
+    private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
+        // TODO add your handling code here:
+        System.out.println("Here");
+        if(WeekTab.isShowing())
+           setWeekDisplay(); 
+        else if (MonthTab.isShowing())
+            changeMonth(j);
+    }//GEN-LAST:event_jTabbedPane1StateChanged
+    
+    //sets the week display. Just a slight change on the code 
+    //already in the button handler, so FIX ME TO WORK GOOD.
+    private void setWeekDisplay(){
+            
+           String val = ""+MonthTab.getModel().getValueAt(f, 0);
+           
+            String start = val+"of"+currentLabel.getText();
+             if ((l)==0){
+                     start="26/9";
+                     f=0;
+                     l=1;
+                 } else{
+             
+                 while(val.equals("")){
+                 
+                 //
+                 if(f==0){
+                     f=5;
+                    j--; 
+                    changeMonth(j); 
+                    //MonthTab.setVisible(true);
+                    val = ""+MonthTab.getModel().getValueAt(f, 0);
+                } else {
+                     f--;
+                     val = ""+MonthTab.getModel().getValueAt(f, 0);
+                 }
+             
+             }
+             
+            
+      
+             
+            start = val+"/"+(((j+9)%12)+1);
+            if (f==0){
+                   f=5;
+                 j--; 
+                 changeMonth(j); 
+            } }
+             currentLabel.setText("Week commencing " + start);
+              
+    }
     private void changeMonth(int j){
         int k=0;
              for (int i=0;i<6;i++) {

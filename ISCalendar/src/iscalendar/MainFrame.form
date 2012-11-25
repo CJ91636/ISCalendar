@@ -128,6 +128,9 @@
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jTabbedPane1StateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="currentLabel.setText(&quot;October&quot;);&#xa;             int k=0;&#xa;             for (int i=0;i&lt;6;i++) {&#xa;                for (int j=0;j&lt;7;j++) {&#xa;                    if (k&gt;=5 &amp;&amp; k&lt; 36){&#xa;                        getMonthTab().getModel().setValueAt(k-4, i, j);&#xa;                    }    &#xa;                    &#xa;                    k++;    &#xa;                    }&#xa;             }&#xa;if (WeekTab.hasFocus()){&#xa;f=0; &#xa;String val = &quot;&quot;+MonthTab.getModel().getValueAt(f, 0);&#xa;                 val = &quot;&quot;+MonthTab.getModel().getValueAt(f, 0);&#xa;                 if(val.equals(&quot;&quot;)){&#xa;                f++;&#xa;                 val = &quot;&quot;+MonthTab.getModel().getValueAt(f, 0);&#xa;             }&#xa;String start = val+&quot;/&quot;+(((j+9)%12)+1);&#xa; currentLabel.setText(&quot;Week commencing &quot; + start);&#xa;}"/>
           </AuxValues>
