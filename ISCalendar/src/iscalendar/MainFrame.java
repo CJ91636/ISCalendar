@@ -397,18 +397,26 @@ int f = 0; //is week no in month
     //listen for a tab change, perform appopriate update to display
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
         // TODO add your handling code here:
-        System.out.println("Here");
+      //  System.out.println("Here");
         if(WeekTab.isShowing())
            setWeekDisplay(); 
-        else if (MonthTab.isShowing())
-            changeMonth(j);
+       else if (MonthTab.isShowing())
+          changeMonth(j);
     }//GEN-LAST:event_jTabbedPane1StateChanged
     
     //sets the week display. Just a slight change on the code 
     //already in the button handler, so FIX ME TO WORK GOOD.
     private void setWeekDisplay(){
-            
-           String val = ""+MonthTab.getModel().getValueAt(f, 0);
+            f=0;
+            String val = ""+MonthTab.getModel().getValueAt(f, 0);
+            val = ""+MonthTab.getModel().getValueAt(f, 0);
+            if(val.equals("")){
+                f++;
+                val = ""+MonthTab.getModel().getValueAt(f, 0);
+            }
+            String start = val+"/"+(((j+9)%12)+1);
+            currentLabel.setText("Week commencing " + start);
+         /**  String val = ""+MonthTab.getModel().getValueAt(f, 0);
            
             String start = val+"of"+currentLabel.getText();
              if ((l)==0){
@@ -442,7 +450,8 @@ int f = 0; //is week no in month
                  j--; 
                  changeMonth(j); 
             } }
-             currentLabel.setText("Week commencing " + start);
+             currentLabel.setText("Week commencing " + start);*/
+        
               
     }
     private void changeMonth(int j){
