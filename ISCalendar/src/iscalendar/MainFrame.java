@@ -459,7 +459,8 @@ Aptment[] apts = new Aptment[365];
                     if (Dave!=""){
                         int Fee = Integer.parseInt(MonthTab.getModel().getValueAt(z, b).toString());
                         if (Fee == apts[i].day){
-                            getMonthTab().getModel().setValueAt( apts[i].title, z, b);
+                            getMonthTab().getModel().setValueAt( Fee+"\n"+apts[i].title, z, b);
+                            
                        }
                         //
                         
