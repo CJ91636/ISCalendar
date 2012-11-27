@@ -12,11 +12,14 @@ import java.util.Calendar;
  * @author 1002253w
  */
 public class AddFullEvent extends javax.swing.JFrame {
+    Aptment b;
+    MainFrame mf;
     /**
      * Creates new form AddFullEvent
      */
     public AddFullEvent() {
         initComponents();
+        
     }
 
     /**
@@ -230,14 +233,25 @@ public class AddFullEvent extends javax.swing.JFrame {
         
         
        
-        
+       //System.out.println(name);
+        b = new Aptment(name, (startMonth+3)%12, startDate.getDate());
+        //System.out.println(startMonth);
+        mf.refreshApts(mf.getJ());
+        this.setVisible(false);
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
+    public void setFrame(MainFrame m){
+        mf = m;
+    }
     private void buttonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelActionPerformed
         NameInput = null;
+        mf.refreshApts(mf.getJ());
         this.setVisible(false);
     }//GEN-LAST:event_buttonCancelActionPerformed
-
+    public Aptment getAptments(){
+       // System.out.println(b.getTitle());
+        return b;
+    }
     /**
      * @param args the command line arguments
      */

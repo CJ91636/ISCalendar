@@ -254,22 +254,30 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEventButtonActionPerformed
-        AddFullEvent afe = new AddFullEvent();
+        afe = new AddFullEvent();
         afe.setNameInputBox(eventText.getText());
         afe.setVisible(true);
+       afe.setFrame(this);
         
         
     }//GEN-LAST:event_addEventButtonActionPerformed
+AddFullEvent afe;
 int j =0; //is month tracker
 int l = 0; // is week tracker 
 int f = 0; //is week no in month
+Aptment[] apts = new Aptment[365];
+
     private void RightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RightButtonActionPerformed
        
-        
+       
+         
         if (MonthTab.isShowing()){
         j++;
         changeMonth(j);
-       
+        
+          
+          //System.out.println(j);
+          //System.out.println(apts[0].month);
        }else if (WeekTab.isShowing()){
            //note this only works for OUR specified time period.
            //This WILL NOT WORK should you get a monday on the first of the month.
@@ -309,11 +317,13 @@ int f = 0; //is week no in month
        }
            
  
-       
+     
+               refreshApts(j);
     }//GEN-LAST:event_RightButtonActionPerformed
 
     private void LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeftButtonActionPerformed
-      if (MonthTab.isShowing()){ 
+      
+        if (MonthTab.isShowing()){ 
       j--;
       changeMonth(j);
       }else if (WeekTab.isShowing()){
@@ -357,16 +367,22 @@ int f = 0; //is week no in month
               
               
        }
+        refreshApts(j);
     }//GEN-LAST:event_LeftButtonActionPerformed
     
     //listen for a tab change, perform appopriate update to display
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
         // TODO add your handling code here:
       //  System.out.println("Here");
-        if(WeekTab.isShowing())
+        if(WeekTab.isShowing()){
            setWeekDisplay(); 
-       else if (MonthTab.isShowing())
+           refreshApts(j);
+        }else if (MonthTab.isShowing()){
           changeMonth(j);
+          refreshApts(j);
+         
+        }
+        
     }//GEN-LAST:event_jTabbedPane1StateChanged
     
     //sets the week display. Just a slight change on the code 
@@ -418,6 +434,42 @@ int f = 0; //is week no in month
              currentLabel.setText("Week commencing " + start);*/
         
               
+    }
+    public void refreshApts(int j){
+        
+        int count = 0;
+          for (int i = 0; i < apts.length; i++){
+              
+              if (apts[i]!=null){
+                  count ++;
+              }
+          }
+          
+          
+          apts[count]= afe.getAptments();
+          for (int i = 0; i <= count; i++){
+              
+              if (apts[i].month ==j){
+                  
+                  for (int z=0;z<6;z++) {
+                      //System.out.print("For1");
+                for (int b=0;b<7;b++) {
+                    //System.out.print("ForAll");
+                    String Dave =MonthTab.getModel().getValueAt(z, b).toString();
+                    if (Dave!=""){
+                        int Fee = Integer.parseInt(MonthTab.getModel().getValueAt(z, b).toString());
+                        if (Fee == apts[i].day){
+                            getMonthTab().getModel().setValueAt( apts[i].title, z, b);
+                       }
+                        //
+                        
+                    
+                    }
+                    }
+             }
+                  
+              }
+          }
     }
     private void changeMonth(int j){
         int k=0;
@@ -659,5 +711,8 @@ int f = 0; //is week no in month
         return MonthTab;
     }
     
+    public int getJ(){
+        return j;
+    }
   
 }
