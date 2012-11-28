@@ -12,11 +12,24 @@ public class Aptment {
     String title;
     int month;
     int day;
+    int shour;
+    int smin;
+    int endmonth;
+    int endday;
+    int endhour;
+    int endmin;
+    int category;
     
-    public Aptment(String name, int jmonth, int jday){
+    public Aptment(String name, int jmonth, int jday, int jhour1, int jmin1, int jmonth2, int jday2, int jhour2, int jmin2){
         this.title = name;
         this.month = jmonth;
         this.day=jday;
+        this.shour = jhour1;
+        this.smin=jmin1;
+        this.endmonth=jmonth2;
+        this.endday=jday2;
+        this.endhour=jhour2;
+        this.endmin=jmin2;
     }
     
     public String getTitle(){

@@ -234,10 +234,11 @@ public class AddFullEvent extends javax.swing.JFrame {
         
        
        //System.out.println(name);
-        b = new Aptment(name, (startMonth+3)%12, startDate.getDate());
+        b = new Aptment(name, (startMonth+3)%12, startDate.getDate(), startHour, startMin, (endMonth+3)%12, endDate.getDate(), endHour, endMin);
         //System.out.println(startMonth);
         mf.refreshApts(mf.getJ());
         this.setVisible(false);
+        b=null;
     }//GEN-LAST:event_buttonConfirmActionPerformed
 
     public void setFrame(MainFrame m){
