@@ -14,6 +14,7 @@ import java.util.Calendar;
 public class AddFullEvent extends javax.swing.JFrame {
     Aptment b;
     MainFrame mf;
+    boolean addEvent = false;
     /**
      * Creates new form AddFullEvent
      */
@@ -200,6 +201,7 @@ public class AddFullEvent extends javax.swing.JFrame {
     }//GEN-LAST:event_checkAllDayActionPerformed
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
+        addEvent = true;
         boolean isRecurring = checkRecurring.isSelected();
         int rec = 0;
         if(isRecurring){
@@ -242,6 +244,7 @@ public class AddFullEvent extends javax.swing.JFrame {
         
         mf.refreshEventBox();
         this.setVisible(false);
+        addEvent = false;
         b=null;
     }//GEN-LAST:event_buttonConfirmActionPerformed
 

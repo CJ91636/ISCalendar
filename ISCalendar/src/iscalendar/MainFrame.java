@@ -51,6 +51,7 @@ public class MainFrame extends javax.swing.JFrame {
         ListEvents = new javax.swing.JList();
         EventLabel = new javax.swing.JLabel();
         jXMonthView1 = new org.jdesktop.swingx.JXMonthView();
+        DeleteEventButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -181,6 +182,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         EventLabel.setText("Upcoming Events");
 
+        DeleteEventButton.setText("Delete");
+        DeleteEventButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteEventButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -192,19 +200,19 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(jXMonthView2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE))
+                        .addGap(0, 21, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(EventLabel)
-                                .addGap(84, 84, 84))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(eventText, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                                    .addComponent(addEventButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DeleteEventButton))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(eventText, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
+                                .addComponent(addEventButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(389, 389, 389)
@@ -237,8 +245,10 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(eventText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addEventButton)
-                        .addGap(286, 286, 286)
-                        .addComponent(EventLabel)
+                        .addGap(280, 280, 280)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(EventLabel)
+                            .addComponent(DeleteEventButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66))
@@ -465,6 +475,20 @@ public class MainFrame extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
+    private void DeleteEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteEventButtonActionPerformed
+        // TODO add your handling code here:
+        for(int i = 0; i < apts.size(); i++)
+            if(apts.get(i) != null){
+                String check = apts.get(i).day + "/" + (apts.get(i).month + 10)%12 + " " + apts.get(i).getTitle();
+                if(check.equals( ListEvents.getSelectedValue().toString())){
+                    apts.remove(apts.get(i));
+                    refreshApts(monthTracker);
+                    refreshEventBox();
+                    break;
+                }
+            }
+    }//GEN-LAST:event_DeleteEventButtonActionPerformed
+
     //sets the week display. Just a slight change on the code 
     //already in the button handler, so FIX ME TO WORK GOOD.
     private void setWeekDisplay() {
@@ -506,7 +530,11 @@ public class MainFrame extends javax.swing.JFrame {
         changeMonth(monthTracker);
       
         if (!apts.contains(afe.getAptments())){
-        apts.add(afe.getAptments());}
+            if(afe.addEvent){
+                apts.add(afe.getAptments());
+                afe.addEvent = false;
+            }
+        }
         for (int i = 0; i < apts.size(); i++) {
 
             if (apts.get(i).month == monthTracker) {
@@ -800,6 +828,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable DayTab;
+    private javax.swing.JButton DeleteEventButton;
     private javax.swing.JLabel EventLabel;
     private javax.swing.JButton LeftButton;
     private javax.swing.JList ListEvents;
