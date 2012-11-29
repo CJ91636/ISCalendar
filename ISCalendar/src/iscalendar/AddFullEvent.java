@@ -238,6 +238,7 @@ public class AddFullEvent extends javax.swing.JFrame {
         //System.out.println(startMonth);
         System.out.println(startHour);
         mf.refreshApts(mf.getJ());
+        mf.refreshEventBox();
         this.setVisible(false);
         b=null;
     }//GEN-LAST:event_buttonConfirmActionPerformed
