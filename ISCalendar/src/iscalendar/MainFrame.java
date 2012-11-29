@@ -182,6 +182,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         EventLabel.setText("Upcoming Events");
 
+        jXMonthView1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jXMonthView1ActionPerformed(evt);
+            }
+        });
+
         DeleteEventButton.setText("Delete");
         DeleteEventButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,7 +243,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jXMonthView2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jXMonthView2, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                                 .addGap(75, 75, 75))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,7 +293,7 @@ public class MainFrame extends javax.swing.JFrame {
         afe.setNameInputBox(eventText.getText());
         afe.setVisible(true);
         afe.setFrame(this);
-        MonthTab.requestFocus();
+        jTabbedPane1.setSelectedIndex(0);
 
 
     }//GEN-LAST:event_addEventButtonActionPerformed
@@ -296,6 +302,7 @@ public class MainFrame extends javax.swing.JFrame {
     int weekTracker = 0; // is week tracker 
     int weekNumber = 0; //is week no in month
     LinkedList<Aptment> apts = new LinkedList<Aptment>();
+    int weekToDay = 0;
 
     private void RightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RightButtonActionPerformed
         for (int c = 1; c<8; c++){
@@ -425,7 +432,7 @@ public class MainFrame extends javax.swing.JFrame {
                         weekNumber = 5;
                         monthTracker--;
                         changeMonth(monthTracker);
-                        //MonthTab.setVisible(true);
+
                         val = "" + MonthTab.getModel().getValueAt(weekNumber, 0);
                     } else {
                         weekNumber--;
@@ -460,8 +467,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     //listen for a tab change, perform appopriate update to display
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
-        // TODO add your handling code here:
-        //  System.out.println("Here");
+      
         if (MonthTab.isShowing()) {
             changeMonth(monthTracker);
             refreshApts(monthTracker);
@@ -471,12 +477,24 @@ public class MainFrame extends javax.swing.JFrame {
             setWeekDisplay();
             refreshWeekApts(monthTracker);
 
+        } else if (DayTab.isShowing()){
+            setDayDisplay();
         }
 
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
+    private void setDayDisplay(){
+        weekToDay++;
+        for (int i =0; i< 24;i++){
+            DayTab.getModel().setValueAt(WeekTab.getModel().getValueAt(i+1, weekToDay), i, 1);
+            currentLabel.setText(WeekTab.getModel().getValueAt(0, weekToDay).toString());
+            
+        }
+    }
+    
     private void DeleteEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteEventButtonActionPerformed
         // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(0);
         for(int i = 0; i < apts.size(); i++)
             if(apts.get(i) != null){
                 String check = apts.get(i).day + "/" + (apts.get(i).month + 10)%12 + " " + apts.get(i).getTitle();
@@ -488,6 +506,10 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
     }//GEN-LAST:event_DeleteEventButtonActionPerformed
+
+    private void jXMonthView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXMonthView1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jXMonthView1ActionPerformed
 
     //sets the week display. Just a slight change on the code 
     //already in the button handler, so FIX ME TO WORK GOOD.
@@ -508,9 +530,9 @@ public class MainFrame extends javax.swing.JFrame {
                         Scanner boxInfo = new Scanner(dayData);
                         if (boxInfo.hasNextInt()) {
                             
-                    WeekTab.getModel().setValueAt(boxInfo.nextInt(), 0, c + 1);}
+                    WeekTab.getModel().setValueAt(boxInfo.nextInt()+ "/" + (((monthTracker+10)%12)), 0, c + 1);}
                         else{
-                            WeekTab.getModel().setValueAt(tempday, 0, c + 1);
+                            WeekTab.getModel().setValueAt(tempday+ "/" + (((monthTracker+9)%12)+1), 0, c + 1);
                             tempday++;
                         }
                 }
@@ -563,41 +585,24 @@ public class MainFrame extends javax.swing.JFrame {
 
     public void refreshWeekApts(int monthTracker) {
       
+        if(afe.addEvent){
+                apts.add(afe.getAptments());
+                afe.addEvent = false;
+            }
         
-        apts.add(afe.getAptments());
         
-                 
-                    String dayData; 
-                    Scanner cellInf;
+  
         //refreshApts(monthTracker);
+        
         for (int count=0; count<apts.size();count++) {
             for (int c = 0; c < 7; c++) {
-                String saveme = WeekTab.getModel().getValueAt(0, c+1).toString();
-                String please = ""+apts.get(count).day+"/"+((apts.get(count).month+10)%12);
-                System.out.println(saveme);
-                System.out.println(please);
-                if (saveme.equals(please)){
+                String target = WeekTab.getModel().getValueAt(0, c+1).toString();
+                String wanted = ""+apts.get(count).day+"/"+((apts.get(count).month+10)%12);
+
+                if (target.equals(wanted)){
                     WeekTab.getModel().setValueAt(apts.get(count).title, apts.get(count).shour+1, c+1);
                 }
-                 /**dayData=WeekTab.getModel().getValueAt(0, c+1).toString();
                 
-                System.out.println(dayData);
-                        cellInf = new Scanner(dayData);
-                        if (cellInf.hasNextInt()){
-                       //System.out.println(cellInf.nextInt());
-                //System.out.println(cellInf.nextInt());
-                        int testy = cellInf.nextInt();
-                      
-                if (testy==apts.get(count).day) {
-                    
-                    int test = cellInf.nextInt();
-                   
-                    if (((apts.get(count).month-10)%12) == test){
-                      //  System.out.println("YEAH BITCH");
-                        WeekTab.getModel().setValueAt(apts.get(count).title, apts.get(count).shour+1, c+1);         
-                    }  
-            }
-        }*/
         }
         }
     }
