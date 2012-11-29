@@ -85,6 +85,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         WeekTab.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {"DATE>>", null, null, null, null, null, null, null},
                 {"00:00", null, null, null, null, null, null, null},
                 {"01:00", null, null, null, null, null, null, null},
                 {"02:00", null, null, null, null, null, null, null},
@@ -113,15 +114,7 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Time", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, true, true, true, true, true, true, true
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         WeekTab.setRowHeight(55);
         jScrollPane2.setViewportView(WeekTab);
 
@@ -291,6 +284,9 @@ public class MainFrame extends javax.swing.JFrame {
             String val = "" + MonthTab.getModel().getValueAt(weekNumber, 0);
 
             String start = val + "of" + currentLabel.getText();
+               for (int c = 0; c<7; c++){
+            WeekTab.getModel().setValueAt(MonthTab.getModel().getValueAt(weekNumber, c), 0, c+1);
+        }
             if ((weekTracker) == 1) {
                 start = "26/9";
                 weekNumber = 0;
@@ -304,7 +300,13 @@ public class MainFrame extends javax.swing.JFrame {
                         changeMonth(monthTracker);
                         //MonthTab.setVisible(true);
                         val = "" + MonthTab.getModel().getValueAt(weekNumber, 0);
+        
                     }
+                    for (int c = 0; c<7; c++){
+                
+            WeekTab.getModel().setValueAt(MonthTab.getModel().getValueAt(weekNumber, c), 0, c+1);
+                
+        }
 
                 }
 
@@ -317,11 +319,19 @@ public class MainFrame extends javax.swing.JFrame {
                 weekNumber = 0;
                 monthTracker++;
                 changeMonth(monthTracker);
+                  
             }
             start = val + "/" + (((monthTracker + 9) % 12) + 1);
             currentLabel.setText("Week commencing " + start);
+            
         }
-
+        int tempDay = 1;
+for (int c = 0; c<7; c++){
+                if (WeekTab.getModel().getValueAt(0, c+1).toString().equals("")){
+            WeekTab.getModel().setValueAt(tempDay, 0, c+1);
+            tempDay++;
+                }
+        }
 
 
         
@@ -372,6 +382,9 @@ public class MainFrame extends javax.swing.JFrame {
                 }
             }
             currentLabel.setText("Week commencing " + start);
+            for (int c = 0; c<7; c++){
+            WeekTab.getModel().setValueAt(MonthTab.getModel().getValueAt(weekNumber, c), 0, c+1);
+        }
 
 
         }
@@ -405,8 +418,11 @@ public class MainFrame extends javax.swing.JFrame {
             val = "" + MonthTab.getModel().getValueAt(weekNumber, 0);
         }
         String start = val + "/" + (((monthTracker + 9) % 12) + 1);
-        System.out.println("TES2");
+      
         currentLabel.setText("Week commencing " + start);
+        for (int c = 0; c<7; c++){
+            WeekTab.getModel().setValueAt(MonthTab.getModel().getValueAt(weekNumber, c), 0, c+1);
+        }
         /**
          * String val = ""+MonthTab.getModel().getValueAt(f, 0);
          *
@@ -430,6 +446,45 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public void refreshApts(int j) {
+        for (int i = 0; i < 6; i++) {
+            for (int b = 0; b < 7; b++) {
+
+                getMonthTab().getModel().setValueAt("", i, b);
+
+
+
+            }
+        }
+        changeMonth(j);
+        
+        apts.add(afe.getAptments());
+        for (int i = 0; i < apts.size(); i++) {
+
+            if (apts.get(i).month == j) {
+
+                for (int z = 0; z < 6; z++) {
+
+                    for (int b = 0; b < 7; b++) {
+
+                        String dayData = MonthTab.getModel().getValueAt(z, b).toString();
+                        Scanner boxInfo = new Scanner(dayData);
+                        if (boxInfo.hasNextInt()) {
+
+                            int boxDay = boxInfo.nextInt();
+                            String currentData = getMonthTab().getModel().getValueAt(z, b).toString();
+                            if (boxDay == apts.get(i).day) {
+                                getMonthTab().getModel().setValueAt(currentData + " " + apts.get(i).title, z, b);
+
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    
+    public void refreshWeekApts(int j) {
         for (int i = 0; i < 6; i++) {
             for (int b = 0; b < 7; b++) {
 
