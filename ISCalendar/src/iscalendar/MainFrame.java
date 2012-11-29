@@ -265,7 +265,12 @@ public class MainFrame extends javax.swing.JFrame {
     LinkedList<Aptment> apts = new LinkedList<Aptment>();
 
     private void RightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RightButtonActionPerformed
-
+        for (int c = 1; c<7; c++){
+            for (int j = 1; j<24; j++){
+                WeekTab.setValueAt("", j, c);
+            }
+            
+        }
 
 
         if (MonthTab.isShowing()) {
@@ -280,6 +285,7 @@ public class MainFrame extends javax.swing.JFrame {
             //This WILL NOT WORK should you get a monday on the first of the month.
             //I think to do this youd need to just double check if val is ""
             //and do f++ at the end of the method 
+            
             weekTracker++;
             weekNumber++;
             String val = "" + MonthTab.getModel().getValueAt(weekNumber, 0);
@@ -341,12 +347,18 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_RightButtonActionPerformed
 
     private void LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeftButtonActionPerformed
-
+        for (int c = 1; c<7; c++){
+            for (int j = 1; j<24; j++){
+                WeekTab.setValueAt("", j, c);
+            }
+            
+        }
         if (MonthTab.isShowing()) {
             monthTracker--;
             changeMonth(monthTracker);
             refreshApts(monthTracker);
         } else if (WeekTab.isShowing()) {
+            
             weekTracker--;
             weekNumber--;
             String val = "" + MonthTab.getModel().getValueAt(weekNumber, 0);
@@ -429,6 +441,7 @@ public class MainFrame extends javax.swing.JFrame {
             //refreshApts(monthTracker);
         } else if (WeekTab.isShowing()) {
             setWeekDisplay();
+            refreshWeekApts(monthTracker);
 
         }
 
@@ -497,19 +510,18 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     public void refreshWeekApts(int monthTracker) {
-       
-
+      
+        
         apts.add(afe.getAptments());
+        
         //refreshApts(monthTracker);
         for (int count=0; count<apts.size();count++) {
             for (int c = 0; c < 7; c++) {
                 if (Integer.parseInt(WeekTab.getModel().getValueAt(0, c + 1).toString())==apts.get(count).day) {
                     if (apts.get(count).month == monthTracker){
-                        WeekTab.getModel().setValueAt(apts.get(count).title, c+1, apts.get(count).shour+1);
-                        
-                    }
-                    
-                
+                        System.out.println("TICL");
+                        WeekTab.getModel().setValueAt(apts.get(count).title, apts.get(count).shour+1, c+1);         
+                    }  
             }
         }
         }
