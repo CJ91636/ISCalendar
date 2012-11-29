@@ -325,21 +325,17 @@ public class MainFrame extends javax.swing.JFrame {
         }
         else if(DayTab.isShowing()){
             weekToDay++;
-            if (weekToDay<=7){
             setDayDisplay(weekToDay);
+            if (weekToDay>=7){
+           
             
-        } else {
-                weekToDay = 0;
+        
+                weekToDay = 1;
                 weekUp();
-                weekToDay++;
-            
-            for (int i =0; i< 24;i++){
-            DayTab.getModel().setValueAt(WeekTab.getModel().getValueAt(i+1, weekToDay), i, 1);
-            
-            
-            }
+
+            setDayDisplay(weekToDay);
         }
-            currentLabel.setText(WeekTab.getModel().getValueAt(0, weekToDay).toString());
+            //currentLabel.setText(WeekTab.getModel().getValueAt(0, weekToDay).toString());
         }
         refreshWeekApts(monthTracker+1);
             
@@ -427,6 +423,19 @@ public class MainFrame extends javax.swing.JFrame {
         } else if (WeekTab.isShowing()) {
             
             weekDown();
+        }else if(DayTab.isShowing()){
+            weekToDay--;
+            setDayDisplay(weekToDay);
+            if (weekToDay<=0){
+           
+            
+        
+                weekToDay = 7;
+                weekDown();
+
+            setDayDisplay(weekToDay);
+        }
+            //currentLabel.setText(WeekTab.getModel().getValueAt(0, weekToDay).toString());
         }
         
         refreshWeekApts(monthTracker+1);
@@ -513,17 +522,16 @@ public class MainFrame extends javax.swing.JFrame {
     private void setDayDisplay(int weekToDay){
         
         for (int i =0; i< 24;i++){
-            DayTab.getModel().setValueAt(WeekTab.getModel().getValueAt(i+1, weekToDay), i, 1);
-            currentLabel.setText(WeekTab.getModel().getValueAt(0, weekToDay).toString());
-            
+            DayTab.getModel().setValueAt(WeekTab.getModel().getValueAt(i+1,weekToDay+1), i, 1);
         }
+        currentLabel.setText("Day: "+WeekTab.getModel().getValueAt(0, weekToDay+1).toString());
         
     }
     
     private void DeleteEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteEventButtonActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(0);
-        for(int i = 0; i < apts.size(); i++)
+        for(int i = 0; i < apts.size(); i++){
             if(apts.get(i) != null){
                 String check = apts.get(i).day + "/" + (apts.get(i).month + 10)%12 + " " + apts.get(i).getTitle();
                 if(check.equals( ListEvents.getSelectedValue().toString())){
@@ -533,6 +541,7 @@ public class MainFrame extends javax.swing.JFrame {
                     break;
                 }
             }
+        }
     }//GEN-LAST:event_DeleteEventButtonActionPerformed
 
     private void jXMonthView1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jXMonthView1ActionPerformed

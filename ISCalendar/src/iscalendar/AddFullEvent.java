@@ -15,6 +15,7 @@ public class AddFullEvent extends javax.swing.JFrame {
     Aptment b;
     MainFrame mf;
     boolean addEvent = false;
+    boolean recurring = false; 
     /**
      * Creates new form AddFullEvent
      */
@@ -242,6 +243,7 @@ public class AddFullEvent extends javax.swing.JFrame {
         
         mf.refreshApts(mf.getJ());
         
+
         mf.refreshEventBox();
         this.setVisible(false);
         addEvent = false;
