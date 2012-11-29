@@ -236,8 +236,10 @@ public class AddFullEvent extends javax.swing.JFrame {
        //System.out.println(name);
         b = new Aptment(name, (startMonth+3)%12, startDate.getDate(), startHour, startMin, (endMonth+3)%12, endDate.getDate(), endHour, endMin);
         //System.out.println(startMonth);
-        System.out.println(startHour);
+        //System.out.println(startHour);
+        
         mf.refreshApts(mf.getJ());
+        
         mf.refreshEventBox();
         this.setVisible(false);
         b=null;
