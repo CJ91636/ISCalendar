@@ -319,9 +319,34 @@ public class MainFrame extends javax.swing.JFrame {
             refreshApts(monthTracker);
 
 
-        } else if (WeekTab.isShowing()) {
- 
+        
+        }else if (WeekTab.isShowing()) {
+            weekUp();
+        }
+        else if(DayTab.isShowing()){
+            weekToDay++;
+            if (weekToDay<=7){
+            setDayDisplay(weekToDay);
             
+        } else {
+                weekToDay = 0;
+                weekUp();
+                weekToDay++;
+            
+            for (int i =0; i< 24;i++){
+            DayTab.getModel().setValueAt(WeekTab.getModel().getValueAt(i+1, weekToDay), i, 1);
+            
+            
+            }
+        }
+            currentLabel.setText(WeekTab.getModel().getValueAt(0, weekToDay).toString());
+        }
+        refreshWeekApts(monthTracker+1);
+            
+    }//GEN-LAST:event_RightButtonActionPerformed
+
+    private void weekUp(){
+        
             weekTracker++;
             weekNumber++;
             String val = "" + MonthTab.getModel().getValueAt(weekNumber, 0);
@@ -380,14 +405,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
 
             currentLabel.setText("Week commencing " + start);
-             refreshWeekApts(monthTracker);        
-        }
+             refreshWeekApts(monthTracker);    
+             
+        
 
-        refreshWeekApts(monthTracker+1);
+        
 
 
-    }//GEN-LAST:event_RightButtonActionPerformed
-
+    }
     private void LeftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LeftButtonActionPerformed
         for (int c = 1; c<7; c++){
             for (int j = 1; j<24; j++){
@@ -401,7 +426,13 @@ public class MainFrame extends javax.swing.JFrame {
             refreshApts(monthTracker);
         } else if (WeekTab.isShowing()) {
             
-            weekTracker--;
+            weekDown();
+        }
+        
+        refreshWeekApts(monthTracker+1);
+    }//GEN-LAST:event_LeftButtonActionPerformed
+    private void weekDown(){
+        weekTracker--;
             weekNumber--;
             String val = "" + MonthTab.getModel().getValueAt(weekNumber, 0);
 
@@ -440,10 +471,7 @@ public class MainFrame extends javax.swing.JFrame {
                     }
 
                 }
-
-
-
-                
+         
                 start = val + "/" + (((monthTracker + 9) % 12) + 1);
                 if (weekNumber == 0) {
                     weekNumber = 5;
@@ -460,11 +488,10 @@ public class MainFrame extends javax.swing.JFrame {
 
             }
             refreshWeekApts(monthTracker);
-        }
-        
-        refreshWeekApts(monthTracker+1);
-    }//GEN-LAST:event_LeftButtonActionPerformed
-
+            weekToDay++;
+            setDayDisplay(weekToDay);
+    }
+    
     //listen for a tab change, perform appopriate update to display
     private void jTabbedPane1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jTabbedPane1StateChanged
       
@@ -478,18 +505,19 @@ public class MainFrame extends javax.swing.JFrame {
             refreshWeekApts(monthTracker);
 
         } else if (DayTab.isShowing()){
-            setDayDisplay();
+            setDayDisplay(weekToDay);
         }
 
     }//GEN-LAST:event_jTabbedPane1StateChanged
 
-    private void setDayDisplay(){
-        weekToDay++;
+    private void setDayDisplay(int weekToDay){
+        
         for (int i =0; i< 24;i++){
             DayTab.getModel().setValueAt(WeekTab.getModel().getValueAt(i+1, weekToDay), i, 1);
             currentLabel.setText(WeekTab.getModel().getValueAt(0, weekToDay).toString());
             
         }
+        
     }
     
     private void DeleteEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteEventButtonActionPerformed
