@@ -4,6 +4,8 @@
  */
 package iscalendar;
 
+import java.util.Date;
+
 /**
  *
  * @author 1003019j
@@ -19,6 +21,9 @@ public class Aptment {
     int endhour;
     int endmin;
     int category;
+    
+    Date startDate;
+    Date endDate;
     
     public Aptment(String name, int jmonth, int jday, int jhour1, int jmin1, int jmonth2, int jday2, int jhour2, int jmin2){
         this.title = name;

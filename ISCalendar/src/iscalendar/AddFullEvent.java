@@ -238,6 +238,8 @@ public class AddFullEvent extends javax.swing.JFrame {
        
        //System.out.println(name);
         b = new Aptment(name, (startMonth+3)%12, startDate.getDate(), startHour, startMin, (endMonth+3)%12, endDate.getDate(), endHour, endMin);
+        b.startDate = startDate;
+        b.endDate = endDate;
         //System.out.println(startMonth);
         //System.out.println(startHour);
         
@@ -258,6 +260,24 @@ public class AddFullEvent extends javax.swing.JFrame {
         mf.refreshApts(mf.getJ());
         this.setVisible(false);
     }//GEN-LAST:event_buttonCancelActionPerformed
+    
+    public void editOptions(Aptment a){
+        addEvent = true;
+        /*boolean isRecurring = checkRecurring.isSelected();
+        int rec = 0;
+        if(isRecurring){
+            rec = recurringChoice.getSelectedIndex()+1;
+        }*/
+        //boolean isAllDay = checkAllDay.isSelected();
+        //Date startDate = (Date) startDateDay.getValue();
+        NameInputBox.setText(a.getTitle());
+        startDateDay.setValue(a.startDate);
+        
+        //Date endDate = (Date) endDateDay.getValue();
+        endDateDay.setValue(a.endDate);
+        buttonCancel.setEnabled(false);
+    }
+    
     public Aptment getAptments(){
        // System.out.println(b.getTitle());
         return b;
