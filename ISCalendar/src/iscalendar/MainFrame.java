@@ -252,11 +252,11 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jXMonthView2, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                .addComponent(jXMonthView2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(75, 75, 75))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jXMonthView1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)))
                         .addComponent(eventText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addEventButton)
@@ -266,10 +266,9 @@ public class MainFrame extends javax.swing.JFrame {
                             .addComponent(DeleteEventButton)
                             .addComponent(EditEventButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66))
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane1))
-                .addContainerGap())
+                .addGap(78, 78, 78))
         );
 
         currentLabel.setText("October");
@@ -304,6 +303,7 @@ public class MainFrame extends javax.swing.JFrame {
         afe.setVisible(true);
         afe.setFrame(this);
         jTabbedPane1.setSelectedIndex(0);
+        
 
 
     }//GEN-LAST:event_addEventButtonActionPerformed
@@ -311,7 +311,7 @@ public class MainFrame extends javax.swing.JFrame {
     int monthTracker = 0; //is month tracker
     int weekTracker = 0; // is week tracker 
     int weekNumber = 0; //is week no in month
-    LinkedList<Aptment> apts = new LinkedList<Aptment>();
+    public LinkedList<Aptment> apts = new LinkedList<Aptment>();
     int weekToDay = 0;
 
     private void RightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RightButtonActionPerformed
@@ -560,6 +560,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void EditEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditEventButtonActionPerformed
         // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(0);
         for(int i = 0; i < apts.size(); i++)
             if(apts.get(i) != null){
                 String check = apts.get(i).day + "/" + (apts.get(i).month + 10)%12 + " " + apts.get(i).getTitle();
@@ -645,6 +646,22 @@ public class MainFrame extends javax.swing.JFrame {
 
             }
         }
+        if (apts.size()<=1){
+        if (apts.peek().rec == true){
+            
+            
+            if (afe.op1 == 0){
+                if(afe.op2 == 0){
+                    
+                    for(int daycount = afe.b.startDate.getDate(); daycount < 31; daycount ++){
+                        Aptment c = new Aptment(afe.b.title, (afe.b.month+3)%12, (afe.b.day + 1), afe.b.shour, afe.b.smin, (afe.b.endhour+3)%12, afe.b.endday, afe.b.endhour, afe.b.endmin, false, 1, 1);
+                        apts.add(c);
+                    }
+                }
+            }
+            refreshApts(getJ());
+        }
+        }
     }
 
     public void refreshWeekApts(int monthTracker) {
@@ -655,7 +672,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
         
         
-  
+        for(int j = 1; j < WeekTab.getModel().getColumnCount(); j++){
+for(int k = 1; k < WeekTab.getModel().getRowCount(); k++){
+WeekTab.getModel().setValueAt("", k, j);
+}
+}
         //refreshApts(monthTracker);
         
         for (int count=0; count<apts.size();count++) {

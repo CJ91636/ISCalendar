@@ -21,11 +21,14 @@ public class Aptment {
     int endhour;
     int endmin;
     int category;
+    boolean rec;
+    int p1;
+    int p2;
     
     Date startDate;
     Date endDate;
     
-    public Aptment(String name, int jmonth, int jday, int jhour1, int jmin1, int jmonth2, int jday2, int jhour2, int jmin2){
+    public Aptment(String name, int jmonth, int jday, int jhour1, int jmin1, int jmonth2, int jday2, int jhour2, int jmin2, boolean r, int o1, int o2){
         this.title = name;
         this.month = jmonth;
         this.day=jday;
@@ -35,6 +38,9 @@ public class Aptment {
         this.endday=jday2;
         this.endhour=jhour2;
         this.endmin=jmin2;
+        this.rec = r;
+        this.p1=o1;
+        this.p2=o2;
     }
     
     public String getTitle(){

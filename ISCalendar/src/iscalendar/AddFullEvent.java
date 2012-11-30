@@ -16,6 +16,8 @@ public class AddFullEvent extends javax.swing.JFrame {
     MainFrame mf;
     boolean addEvent = false;
     boolean recurring = false; 
+    int op1;
+    int op2;
     /**
      * Creates new form AddFullEvent
      */
@@ -34,6 +36,7 @@ public class AddFullEvent extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        jComboBox1 = new javax.swing.JComboBox();
         jPanel1 = new javax.swing.JPanel();
         NameInputBox = new javax.swing.JTextField();
         NameLabel = new javax.swing.JLabel();
@@ -42,13 +45,13 @@ public class AddFullEvent extends javax.swing.JFrame {
         endLabel = new javax.swing.JLabel();
         startDateDay = new javax.swing.JSpinner();
         endDateDay = new javax.swing.JSpinner();
-        checkAllDay = new javax.swing.JCheckBox();
         checkRecurring = new javax.swing.JCheckBox();
         buttonConfirm = new javax.swing.JButton();
         buttonCancel = new javax.swing.JButton();
-        labelLocation = new javax.swing.JLabel();
-        LocationInputBox = new javax.swing.JTextField();
         recurringChoice = new javax.swing.JComboBox();
+        durationRecurrance = new javax.swing.JComboBox();
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,13 +75,6 @@ public class AddFullEvent extends javax.swing.JFrame {
 
         endDateDay.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1317423600000L), new java.util.Date(1317423600000L), new java.util.Date(1349045940000L), java.util.Calendar.MINUTE));
 
-        checkAllDay.setText("All Day");
-        checkAllDay.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkAllDayActionPerformed(evt);
-            }
-        });
-
         checkRecurring.setText("Recurring");
 
         buttonConfirm.setText("Confirm");
@@ -95,9 +91,14 @@ public class AddFullEvent extends javax.swing.JFrame {
             }
         });
 
-        labelLocation.setText("Location:");
-
         recurringChoice.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Daily", "Weekly", "Two Weeks", "Four Weeks" }));
+        recurringChoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recurringChoiceActionPerformed(evt);
+            }
+        });
+
+        durationRecurrance.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1 Month", "2 Months", "3 Months", "4 Months" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -105,42 +106,37 @@ public class AddFullEvent extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(NameLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(NameInputBox, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(startLabel)
-                            .addGap(3, 3, 3)
-                            .addComponent(startDateDay, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(1, 1, 1)
-                            .addComponent(endLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(endDateDay, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(75, 75, 75)
-                            .addComponent(TitleLabel)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(NameLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(NameInputBox, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(TitleLabel))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(startLabel)
+                        .addGap(3, 3, 3)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(checkAllDay)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(checkRecurring))
-                                    .addComponent(buttonConfirm)))
+                                .addComponent(startDateDay, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(endLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                                .addComponent(endDateDay, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(labelLocation)
-                                .addGap(4, 4, 4)
-                                .addComponent(LocationInputBox, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonCancel)
-                            .addComponent(recurringChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(63, Short.MAX_VALUE))
+                                .addGap(69, 69, 69)
+                                .addComponent(buttonConfirm)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(buttonCancel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(checkRecurring)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(recurringChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(durationRecurrance, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,17 +156,13 @@ public class AddFullEvent extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(checkRecurring)
-                    .addComponent(checkAllDay)
-                    .addComponent(recurringChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLocation)
-                    .addComponent(LocationInputBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(recurringChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(durationRecurrance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonCancel)
                     .addComponent(buttonConfirm))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -197,10 +189,6 @@ public class AddFullEvent extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_NameInputBoxActionPerformed
 
-    private void checkAllDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAllDayActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkAllDayActionPerformed
-
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
         addEvent = true;
         boolean isRecurring = checkRecurring.isSelected();
@@ -208,7 +196,8 @@ public class AddFullEvent extends javax.swing.JFrame {
         if(isRecurring){
             rec = recurringChoice.getSelectedIndex()+1;
         }
-        boolean isAllDay = checkAllDay.isSelected();
+        boolean isAllDay = false;
+        //boolean isAllDay = checkAllDay.isSelected();
         Date startDate = (Date) startDateDay.getValue();
         int startMin = startDate.getMinutes();
         int startHour = startDate.getHours();
@@ -222,6 +211,7 @@ public class AddFullEvent extends javax.swing.JFrame {
         int endDay = endDate.getDay();
         int endMonth = endDate.getMonth();
         int endYear = endDate.getYear();
+        String loc = null;
         
         CalendarTime calStartTime = new CalendarTime(startMin, startHour);
         CalendarDate calStartDate = new CalendarDate(startDay,startMonth,startYear);
@@ -229,19 +219,30 @@ public class AddFullEvent extends javax.swing.JFrame {
         CalendarDate calEndDate = new CalendarDate(endDay, endMonth, endYear);
         
         String name = NameInputBox.getText();
-        String loc = LocationInputBox.getText();
         
         Appointment ap = new Appointment(calStartDate,calEndDate,calStartTime,calEndTime,
-                name, isAllDay,rec,loc);
+                name, isAllDay,rec, loc);
         
         
-       
+       recurring = checkRecurring.isEnabled();
        //System.out.println(name);
         b = new Aptment(name, (startMonth+3)%12, startDate.getDate(), startHour, startMin, (endMonth+3)%12, endDate.getDate(), endHour, endMin);
         b.startDate = startDate;
         b.endDate = endDate;
-        //System.out.println(startMonth);
-        //System.out.println(startHour);
+       if (recurring){
+            op1 = recurringChoice.getSelectedIndex();
+            op2 = durationRecurrance.getSelectedIndex();
+            
+            if (op1 == 0){
+                if(op2 == 0){
+                    for(int daycount = b.startDate.getDate(); daycount < 31; daycount ++){
+                        Aptment c = new Aptment(name, (startMonth+3)%12, (startDate.getDate() + 1), startHour, startMin, (endMonth+3)%12, endDate.getDate(), endHour, endMin);
+                        mf.refreshApts(mf.getJ());
+                    }
+                }
+            }
+            
+        }
         
         mf.refreshApts(mf.getJ());
         
@@ -260,6 +261,10 @@ public class AddFullEvent extends javax.swing.JFrame {
         mf.refreshApts(mf.getJ());
         this.setVisible(false);
     }//GEN-LAST:event_buttonCancelActionPerformed
+
+    private void recurringChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recurringChoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_recurringChoiceActionPerformed
     
     public void editOptions(Aptment a){
         addEvent = true;
@@ -321,19 +326,18 @@ public class AddFullEvent extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField LocationInputBox;
     private javax.swing.JTextField NameInputBox;
     private javax.swing.JLabel NameLabel;
     private javax.swing.JLabel TitleLabel;
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonConfirm;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JCheckBox checkAllDay;
     private javax.swing.JCheckBox checkRecurring;
+    private javax.swing.JComboBox durationRecurrance;
     private javax.swing.JSpinner endDateDay;
     private javax.swing.JLabel endLabel;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelLocation;
     private javax.swing.JComboBox recurringChoice;
     private javax.swing.JSpinner startDateDay;
     private javax.swing.JLabel startLabel;
