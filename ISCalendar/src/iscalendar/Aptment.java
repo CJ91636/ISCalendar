@@ -20,11 +20,11 @@ public class Aptment {
     int endday;
     int endhour;
     int endmin;
-    int category;
+    String category;
     boolean rec;
     int p1;
     int p2;
-    int month[12] = [31, 30, 31, 31, 29, 31, 30, 31, 30, 31, 31, 30];
+    int months[] = {31, 30, 31, 31, 29, 31, 30, 31, 30, 31, 31, 30};
     
     
     Date startDate;

@@ -53,6 +53,7 @@ public class MainFrame extends javax.swing.JFrame {
         jXMonthView1 = new org.jdesktop.swingx.JXMonthView();
         DeleteEventButton = new javax.swing.JButton();
         EditEventButton = new javax.swing.JButton();
+        categoryComboBox = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -203,6 +204,13 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        categoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "University", "Work", "Leisure", "Other" }));
+        categoryComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                categoryComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -219,14 +227,17 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(EventLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(categoryComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(EditEventButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(DeleteEventButton))
                             .addComponent(eventText, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .addComponent(addEventButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(addEventButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(82, 82, 82)
+                                .addComponent(EventLabel)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -260,11 +271,13 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(eventText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addEventButton)
-                        .addGap(280, 280, 280)
+                        .addGap(260, 260, 260)
+                        .addComponent(EventLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(EventLabel)
                             .addComponent(DeleteEventButton)
-                            .addComponent(EditEventButton))
+                            .addComponent(EditEventButton)
+                            .addComponent(categoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane1))
@@ -576,6 +589,11 @@ public class MainFrame extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_EditEventButtonActionPerformed
 
+    private void categoryComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryComboBoxActionPerformed
+        // TODO add your handling code here:
+        refreshEventBox();
+    }//GEN-LAST:event_categoryComboBoxActionPerformed
+
     //sets the week display. Just a slight change on the code 
     //already in the button handler, so FIX ME TO WORK GOOD.
     private void setWeekDisplay() {
@@ -694,14 +712,16 @@ WeekTab.getModel().setValueAt("", k, j);
     }
     
     public void refreshEventBox(){
-        
+        String category = categoryComboBox.getSelectedItem().toString();
+        System.out.println("Checking for category: " + category);
         String[] events = new String[apts.size()];
         int i = 0;
         for(Aptment a: apts)
-            if(a != null){
+            if(a != null && (a.category.equals(category) || category.equals(("All")))){
                 events[i] = a.day + "/" + (a.month + 10)%12 + " " + a.getTitle();i++;
             }
         ListEvents.setListData(events);
+    
     }
 
     private void changeMonth(int monthTracker) {
@@ -928,6 +948,7 @@ WeekTab.getModel().setValueAt("", k, j);
     private javax.swing.JButton RightButton;
     private javax.swing.JTable WeekTab;
     private javax.swing.JButton addEventButton;
+    private javax.swing.JComboBox categoryComboBox;
     private javax.swing.JLabel currentLabel;
     private javax.swing.JTextField eventText;
     private javax.swing.JScrollPane jScrollPane1;
