@@ -654,14 +654,15 @@ public class MainFrame extends javax.swing.JFrame {
                 if(afe.op2 == 0){
                     
                     for(int daycount = afe.b.startDate.getDate(); daycount < 31; daycount ++){
-                        Aptment c = new Aptment(afe.b.title, (afe.b.month+3)%12, (afe.b.day + 1), afe.b.shour, afe.b.smin, (afe.b.endhour+3)%12, afe.b.endday, afe.b.endhour, afe.b.endmin, false, 1, 1);
+                        Aptment c = new Aptment(afe.b.title, (afe.b.month)%12, (afe.b.day + daycount), afe.b.shour, afe.b.smin, (afe.b.endhour+3)%12, afe.b.endday, afe.b.endhour, afe.b.endmin, false, 1, 1);
                         apts.add(c);
                     }
                 }
             }
+            
             refreshApts(getJ());
         }
-        }
+       }
     }
 
     public void refreshWeekApts(int monthTracker) {

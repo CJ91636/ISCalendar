@@ -223,13 +223,14 @@ public class AddFullEvent extends javax.swing.JFrame {
         Appointment ap = new Appointment(calStartDate,calEndDate,calStartTime,calEndTime,
                 name, isAllDay,rec, loc);
         
-        
+       op1 = recurringChoice.getSelectedIndex();
+            op2 = durationRecurrance.getSelectedIndex();
        recurring = checkRecurring.isEnabled();
        //System.out.println(name);
-        b = new Aptment(name, (startMonth+3)%12, startDate.getDate(), startHour, startMin, (endMonth+3)%12, endDate.getDate(), endHour, endMin);
+        b = new Aptment(name, (startMonth+3)%12, startDate.getDate(), startHour, startMin, (endMonth+3)%12, endDate.getDate(), endHour, endMin, recurring, op1, op2);
         b.startDate = startDate;
         b.endDate = endDate;
-       if (recurring){
+       /**if (recurring){
             op1 = recurringChoice.getSelectedIndex();
             op2 = durationRecurrance.getSelectedIndex();
             
@@ -242,7 +243,7 @@ public class AddFullEvent extends javax.swing.JFrame {
                 }
             }
             
-        }
+        }*/
         
         mf.refreshApts(mf.getJ());
         

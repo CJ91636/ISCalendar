@@ -24,6 +24,8 @@ public class Aptment {
     boolean rec;
     int p1;
     int p2;
+    int month[12] = [31, 30, 31, 31, 29, 31, 30, 31, 30, 31, 31, 30];
+    
     
     Date startDate;
     Date endDate;
